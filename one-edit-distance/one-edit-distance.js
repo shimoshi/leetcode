@@ -4,21 +4,20 @@
  * @return {boolean}
  */
 var isOneEditDistance = function(s, t) {
-  let longer = s.length > t.length ? s.length : t.length;
   let distance = 0;
   
-  for (let i = 0; i < longer; i++) {
-    if (s[i] === t[i]) {
-      continue;
-    } else {
-      distance++;
-      
-      if (s.length > t.length) {
-        t = t.substr(0, i) + s[i] + t.substr(i);
-      } else if (s.length < t.length) {
-        s = s.substr(0, i) + t[i] + s.substr(i);
-      }
-      
+  if (s.length === t.length) {
+    for (let i = 0; i < s.length; i++) {
+      if (s[i] !== t[i]) distance++;
+      if (distance > 1) return false;
+    }
+  } else {
+    let longer = s.length >= t.length ? s : t;
+    let shorter = s.length >= t.length ? t : s;
+  
+    for (let i = 0; i < longer.length; i++) {
+      if (longer[i] !== shorter[i - distance]) distance++;
+      if (distance > 1) return false;
     }
   }
   
