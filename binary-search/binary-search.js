@@ -8,14 +8,14 @@ var search = function(nums, target) {
   let min = 0;
   
   while (max >= min) {
-    let curr = Math.floor((max + min) / 2);
+    let mid = Math.floor((max + min) / 2);
     
-    if (nums[curr] === target) {
-      return curr;
-    } else if (nums[curr] > target) {
-      max = curr - 1;
-    } else if (nums[curr] < target) {
-      min = curr + 1;
+    if (nums[mid] === target) {
+      return mid;
+    } else if (nums[mid] > target) {
+      max = mid - 1;
+    } else if (nums[mid] < target) {
+      min = mid + 1;
     }
   }
   
