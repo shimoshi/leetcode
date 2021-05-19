@@ -3,7 +3,7 @@
  * @param {number} amount
  * @return {number}
  */
-var coinChange = function(coins, amount, memo = {}, total = 1) {
+var coinChange = function(coins, amount) {
   const cache = Array(amount + 1);
   cache.fill(amount + 1);
   cache[0] = 0;
