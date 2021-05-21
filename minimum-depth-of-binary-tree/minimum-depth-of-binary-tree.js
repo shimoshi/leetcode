@@ -10,24 +10,23 @@
  * @param {TreeNode} root
  * @return {number}
  */
-var minDepth = function(root, length = 1, shortest = Number.MAX_SAFE_INTEGER) {
+var minDepth = function(root, length = 1) {
   if (root === null) {
     return 0;
   }
-
   
   if (root.left === null && root.right === null) {
     return length;
   }
   
-  let left = minDepth(root.left, length + 1)
-  if (left > 0 && left < shortest) {
-    shortest = left;
+  let shortest = Number.MAX_SAFE_INTEGER;
+  
+  if (root.left !== null) {
+    shortest = Math.min(minDepth(root.left, length + 1), shortest);
   }
   
-  let right = minDepth(root.right, length + 1)
-  if (right > 0 && right < shortest) {
-    shortest = right;
+  if (root.right !== null) {
+    shortest = Math.min(minDepth(root.right, length + 1), shortest);
   }
     
   return shortest;
