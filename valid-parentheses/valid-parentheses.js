@@ -4,21 +4,20 @@
  */
 var isValid = function(s) {
  let map = new Map();
- map.set('{','}');
- map.set('(',')');
- map.set('[',']');
- let b = [];
+ map.set('{', '}');
+ map.set('(', ')');
+ map.set('[', ']');
+ let stack = [];
   
  for (let i = 0; i < s.length; i++) {
-   if (map.has(s.charAt(i))){
-      b.push(s.charAt(i));
+   if (map.has(s[i])) {
+      stack.push(s[i]);
    } else {
-     let pop = b.pop();
-     if (map.get(pop) !== s.charAt(i)) {
+     if (map.get(stack.pop()) !== s[i]) {
         return false;
      }
    }
  }
   
- return b.length === 0;
+ return stack.length === 0;
 };
