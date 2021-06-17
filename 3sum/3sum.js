@@ -4,7 +4,6 @@
  */
 var threeSum = function(nums) {
   nums.sort((a, b) => a - b);
-  console.log(nums);
   
   let result = [];
   
@@ -12,11 +11,13 @@ var threeSum = function(nums) {
     if (nums[i - 1] === nums[i]) {
       continue;
     }
+    
     let low = i + 1;
     let high = nums.length - 1;
     
     while (low < high) {
       let total = nums[i] + nums[low] + nums[high];
+      
       if (total < 0) {
         low++;
       } else if (total > 0) {
