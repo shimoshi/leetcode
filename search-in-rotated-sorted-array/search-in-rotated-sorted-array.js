@@ -4,16 +4,22 @@
  * @return {number}
  */
 var search = function(nums, target) {
-  let targetIndex = -1;
-  let offset = 0;
+  let start = 0;
+  let end = nums.length - 1;
   
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] === target) {
-      targetIndex = i;
-    }
+  while (start <= end) {
+    let mid = Math.floor((start + end) / 2);
     
-    offset++;
+    if (nums[mid] === target) return mid;
+    // if left side isn't rotated
+    if (nums[mid] >= nums[start]) {
+      if (nums[mid] > target && nums[start] <= target) end = mid - 1;
+      else start = mid + 1;
+    } else {
+      if (nums[mid] < target && nums[end] >= target) start = mid + 1;
+      else end = mid - 1;
+    }
   }
   
-  return targetIndex !== -1 ? targetIndex : -1;
+  return -1;
 };
