@@ -11,7 +11,6 @@ var search = function(nums, target) {
     let mid = Math.floor((start + end) / 2);
     
     if (nums[mid] === target) return mid;
-    // if left side isn't rotated
     if (nums[mid] >= nums[start]) {
       if (nums[mid] > target && nums[start] <= target) end = mid - 1;
       else start = mid + 1;
