@@ -13,14 +13,14 @@ var groupAnagrams = function(strs) {
   }
   
   while (sorted.length) {
-    let curr = sorted.shift();
     const bucket = [copy.shift()];
+    let curr = sorted.shift();
     
     for (let k = 0; k < sorted.length; k++) {
       if (sorted[k] === curr) {
         bucket.push(copy[k]);
+        copy.splice(k, 1);
         sorted.splice(k, 1);
-        copy.splice(k, 1)
         k--
       }
     }
