@@ -3,10 +3,8 @@
  * @return {number[][]}
  */
 var merge = function(intervals) {
-  let i = 0;
-  
   intervals.sort((a, b) => a[0] - b[0]);
-  console.log(intervals);
+  let i = 0;
   
   while (i < intervals.length - 1) {
     if (intervals[i][1] >= intervals[i + 1][0]) {
