@@ -11,13 +11,10 @@ var uniquePaths = function(m, n, posY = 0, posX = 0, memo = {}) {
   if (posY === m - 1 && posX === n - 1) return 1;
   
   //go down
-  if (posY < m) {
-    count += uniquePaths(m, n, posY + 1, posX, memo);
-  }
+  if (posY < m) count += uniquePaths(m, n, posY + 1, posX, memo);
+    
   //go right
-  if (posX < n) {
-    count += uniquePaths(m, n, posY, posX + 1, memo);
-  }
+  if (posX < n) count += uniquePaths(m, n, posY, posX + 1, memo);
   
   memo[posY + ',' + posX] = count;
   
