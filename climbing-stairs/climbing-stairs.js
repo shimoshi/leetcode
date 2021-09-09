@@ -3,20 +3,11 @@
  * @return {number}
  */
 var climbStairs = function(n, step = 0, memo = {}) {
-  if (memo[step]) {
-    return memo[step];
-  } else if (step > n) {
-    return 0;
-  } else if (step === n) {
-    return 1;
-  }
+  if (step in memo) return memo[step];
+  if (step > n) return 0;
+  if (step === n) return 1;
   
-  let count = 0;
+  memo[step] = climbStairs(n, step + 1, memo) + climbStairs(n, step + 2, memo);
   
-  count += climbStairs(n, step + 1, memo);
-  count += climbStairs(n, step + 2, memo);
-  
-  memo[step] = count;
-  
-  return count;
+  return memo[step];
 };
