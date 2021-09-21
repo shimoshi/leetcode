@@ -5,13 +5,13 @@
 var numDecodings = function(s) {
   if (s.length === 0) return 0;
 
-  const N = s.length;
-  const dp = Array(N+1).fill(0);
+  const n = s.length;
+  const dp = Array(n+1).fill(0);
 
   dp[0] = 1;
   dp[1] = s[0] === '0' ? 0 : 1;
 
-  for (let i = 2; i <= N; i++) {
+  for (let i = 2; i <= n; i++) {
     if (s[i-1] !== '0') {
       dp[i] += dp[i-1];
     }
@@ -20,5 +20,5 @@ var numDecodings = function(s) {
     }
   }
 
-  return dp[N];
+  return dp[n];
 };
