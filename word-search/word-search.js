@@ -4,8 +4,6 @@
  * @return {boolean}
  */
 var exist = function(board, word, curr = [0,0]) {
-  if (curr[0] === board.length);
-  
   for (let r = 0; r < board.length; r++) {
     for (let c = 0; c < board[r].length; c++) {
       if (board[r][c] === word[0] && checkAdjacent(r, c, word)) return true;
