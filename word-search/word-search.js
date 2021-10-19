@@ -20,12 +20,12 @@ var exist = function(board, word, curr = [0,0]) {
     
     let temp =w[0];
     board[row][col] = 0;
-    let newW = w.slice(1);
+    let newWord = w.slice(1);
     
-    if (row - 1 >= 0 && checkAdjacent(row - 1, col, newW)) return true;
-    if (col + 1 < board[0].length && checkAdjacent(row, col + 1, newW)) return true;
-    if (row + 1 < board.length && checkAdjacent(row + 1, col, newW)) return true;
-    if (col - 1 >= 0 && checkAdjacent(row, col - 1, newW)) return true;
+    if (row - 1 >= 0 && checkAdjacent(row - 1, col, newWord)) return true;
+    if (col + 1 < board[0].length && checkAdjacent(row, col + 1, newWord)) return true;
+    if (row + 1 < board.length && checkAdjacent(row + 1, col, newWord)) return true;
+    if (col - 1 >= 0 && checkAdjacent(row, col - 1, newWord)) return true;
     
     board[row][col] = temp;
     return false;
