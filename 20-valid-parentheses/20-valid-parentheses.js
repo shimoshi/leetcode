@@ -11,7 +11,7 @@ var isValid = function(s) {
     let stack = [];
     
     for (let char of s) {
-        if (char === '(' || char === '{' || char === '[') {
+        if (map.has(char)) {
             stack.push(map.get(char));
         } else {
             if (char !== stack.pop()) {
