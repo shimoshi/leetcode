@@ -4,15 +4,13 @@
  */
 var maxProfit = function(prices) {
     let profit = 0;
-    let buy = prices[0];
+    let buy = prices.shift();
     
     for (let price of prices) {
-        if (price - buy > profit) {
-            profit = price - buy;
-        }
-        
         if (price < buy) {
             buy = price;
+        } else if (price - buy > profit) {
+            profit = price - buy;
         }
     }
     
