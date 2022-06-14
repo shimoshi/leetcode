@@ -33,7 +33,5 @@ var floodFill = function(image, sr, sc, newColor) {
         floodFill(image, sr, sc - 1, newColor);
     }
     
-    image[sr][sc] = newColor;
-    
     return image;
 };
