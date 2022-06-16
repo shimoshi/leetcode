@@ -3,31 +3,25 @@
  * @return {number}
  */
 var longestPalindrome = function(s) {
-    const dictionary = {};
+    const dict = {};
     
     for (const char of s) {
-        if (dictionary[char]) {
-            dictionary[char]++;
+        if (dict[char]) {
+            dict[char]++;
         } else {
-            dictionary[char] = 1;
+            dict[char] = 1;
         }
     }
     
-    let hasOdd = false;
-    let longestLength = 0;
+    let result = 0;
     
-    for (const key in dictionary) {
-        if (dictionary[key] % 2 === 1) {
-            hasOdd = true;
-            longestLength += dictionary[key] - 1;
-        } else {
-            longestLength += dictionary[key];
+    for (const char in dict) {
+        result += Math.floor(dict[char] / 2) * 2;
+    
+        if (result % 2 === 0 && dict[char] % 2 === 1) {
+            result++;
         }
     }
     
-    if (hasOdd) {
-        longestLength++;
-    }
-    
-    return longestLength;
+    return result;
 };
