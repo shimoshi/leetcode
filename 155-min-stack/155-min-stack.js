@@ -11,11 +11,9 @@ var MinStack = function() {
 MinStack.prototype.push = function(val) {
     this.stack.push(val);
     
-    if (this.min.length && val <= this.min[this.min.length - 1]) {
-        this.min.push(val);
-    } 
-    
     if (!this.min.length) {
+        this.min.push(val);
+    } else if (val <= this.min[this.min.length - 1]) {
         this.min.push(val);
     }
 };
@@ -26,7 +24,7 @@ MinStack.prototype.push = function(val) {
 MinStack.prototype.pop = function() {
     let result = this.stack.pop();
     
-    if (this.min.length && result === this.min[this.min.length - 1]) {
+    if (result === this.min[this.min.length - 1]) {
         this.min.pop();
     }
 };
