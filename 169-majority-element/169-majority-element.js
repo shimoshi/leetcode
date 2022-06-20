@@ -3,21 +3,21 @@
  * @return {number}
  */
 var majorityElement = function(nums) {
-    nums.sort();
-    
+    let major = nums[0];
     let count = 0;
-    let temp = nums[0];
     
     for (let num of nums) {
-        if (temp === num) {
+        if (num === major) {
             count++;
-            
-            if (count > nums.length / 2) {
-                return temp;
-            }
         } else {
+            count--;
+        }
+        
+        if (count === 0) {
+            major = num;
             count = 1;
-            temp = num;
         }
     }
+    
+    return major
 };
