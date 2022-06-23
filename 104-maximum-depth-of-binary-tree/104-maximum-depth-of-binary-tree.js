@@ -11,11 +11,7 @@
  * @return {number}
  */
 var maxDepth = function(root) {
-    if (!root) {
-        return 0;
-    }
-    
-    let depth = 1;
+    let depth = 0;
     
     DFS(root);
     
@@ -26,8 +22,8 @@ var maxDepth = function(root) {
             return 0;
         }
         
-        const left = DFS(root.left) + 1;
-        const right = DFS(root.right) + 1;
+        const left = 1 + DFS(root.left);
+        const right = 1 + DFS(root.right);
         
         depth = Math.max(depth, left, right);
         
