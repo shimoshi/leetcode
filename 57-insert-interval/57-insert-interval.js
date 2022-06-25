@@ -5,13 +5,13 @@
  */
 var insert = function(intervals, newInterval) {
     if (intervals.length === 0) {
-        return [newInterval];
+        intervals.push(newInterval);
+        return intervals;
     }
     
     let left = 0;
     let right = intervals.length - 1;
     let zero;
-    let one;
     
     while (left <= right) {
         if (newInterval[0] <= intervals[left][0]) {
@@ -22,7 +22,6 @@ var insert = function(intervals, newInterval) {
                 intervals.splice(left, 0, newInterval);
                 return intervals;
             }
-            
         } else {
             if (newInterval[0] <= intervals[left][1]) {
                 if (newInterval[1] <= intervals[left][1]) {
@@ -38,8 +37,11 @@ var insert = function(intervals, newInterval) {
     }
     
     if (zero === undefined) {
-        return [...intervals, newInterval];
+        intervals.push(newInterval)
+        return intervals;
     }
+    
+    let one;
     
     while (left <= right) {
         if (newInterval[1] >= intervals[right][1]) {
@@ -53,7 +55,10 @@ var insert = function(intervals, newInterval) {
         right--;
     }
     
-    intervals.splice(left, right - left + 1, [zero, one]);
+    newInterval[0] = zero;
+    newInterval[1] = one;
+    
+    intervals.splice(left, right - left + 1, newInterval);
     
     return intervals;
 };
