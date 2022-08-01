@@ -4,25 +4,17 @@
  * @return {number}
  */
 var coinChange = function(coins, amount, memo = {}) {
-    if (amount in memo) return memo[amount];
-    if (amount === 0) return 0;
-    if (amount < 0) return null;
-    
-    
-    let count = -1;
-    
+    const cache = Array(amount + 1);
+  cache.fill(amount + 1);
+  cache[0] = 0;
+
+  for (let total = 1; total <= amount; total++) {
     for (const coin of coins) {
-        const remainder = amount - coin;
-        const remainderCount = coinChange(coins, remainder, memo);
-        
-        if (remainderCount !== null && remainderCount !== -1) {
-            const combination = remainderCount + 1;
-            if (count === -1 || combination < count) {
-                count = combination;
-            }
-        }
+      if (coin <= total) {
+        cache[total] = Math.min(cache[total], cache[total - coin] + 1);
+      }
     }
-    
-    memo[amount] = count;
-    return count;
+  }
+
+  return cache[amount] > amount ? -1 : cache[amount];
 };
