@@ -1,7 +1,6 @@
 
 var Trie = function() {
-    this.prefixBank = {};
-    this.wordBank = {};
+    this.root = {};
 };
 
 /** 
@@ -9,23 +8,38 @@ var Trie = function() {
  * @return {void}
  */
 Trie.prototype.insert = function(word) {
-    this.wordBank[word] = true;
+    let node = this.root;
     
-    for (let i = 1; i <= word.length; i++) {
-        if (this.prefixBank[word.substring(0, i)]) {
-            this.prefixBank[word.substring(0, i)].push(word);
-        } else {
-            this.prefixBank[word.substring(0, i)] = [word];
+    for (const c of word) {
+        if (!node[c]) {
+            node[c] = {};
+        }
+        node = node[c];
+    }
+    
+    node.isWord = true;
+};
+// modularized new function
+Trie.prototype.traverse = function(word) {
+    let node = this.root;
+    
+    for (const c of word) {
+        node = node[c];
+        if (!node) {
+            return null;
         }
     }
-};
-
+    
+    return node;
+}
 /** 
  * @param {string} word
  * @return {boolean}
  */
 Trie.prototype.search = function(word) {
-    return this.wordBank.hasOwnProperty(word);
+    const node = this.traverse(word);
+    
+    return node !== null && node.isWord === true;
 };
 
 /** 
@@ -33,7 +47,7 @@ Trie.prototype.search = function(word) {
  * @return {boolean}
  */
 Trie.prototype.startsWith = function(prefix) {
-    return this.prefixBank.hasOwnProperty(prefix);
+    return this.traverse(prefix) !== null;
 };
 
 /** 
